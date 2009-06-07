@@ -1,0 +1,30 @@
+#!/bin/sh
+# configure script for Gauss package, Max Neunhoeffer
+# usage: ./configure gappath
+# this script creates a `makefile' from `Makefile.in'
+if [ x"$1" = "x" ]; then
+    echo "Usage: $0 maplepath [gappath]"
+    exit 1
+else
+    MAPLE="$1"
+fi
+shift
+if [ x"$1" = "x" ]; then
+    GAPPATH=../..; echo "Using ../.. as default GAP path"
+else
+    GAPPATH="$1"
+fi
+rm -f makefile sedfile
+echo "#!/bin/sh" > makefile
+cat $GAPPATH/sysinfo.gap >> makefile
+echo "echo s/@GAPARCH@/\$GAParch/g >sedfile" >> makefile
+chmod +x makefile
+./makefile
+rm -f makefile
+echo GAPPATH=$GAPPATH >makefile
+echo MAPLE=$MAPLE >> makefile
+echo "MAPLEINCLUDEPATH=\$(MAPLE)/extern/include" >> makefile
+echo "MAPLEBINPATH=\$(MAPLE)/\$(shell \$(MAPLE)/bin/maple.system.type)" >> makefile
+echo "export LD_LIBRARY_PATH = \$(shell echo \$\$LD_LIBRARY_PATH):\$(MAPLEBINPATH)" >> makefile
+sed -f sedfile Makefile.in >>makefile
+rm -f sedfile
