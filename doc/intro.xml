@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+
+  intro.xml             MapleForHomalg package documentation             Thomas Bächler
+
+         Copyright (C) 2009, Thomas Bächler, RWTH Aachen
+
+This chapter gives a short introduction and explains the philosophy
+behind the package.
+
+-->
+
+<Chapter Label="intro">
+<Heading>Introduction</Heading>
+
+<Cite Key="homalg-project"/>
+
+</Chapter>
+

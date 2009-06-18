@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+
+  title.xml             MapleForHomalg package documentation            Thomas Bächler
+
+         Copyright (C) 2008-2009, Mohamed Barakat, Universität des Saarlandes
+
+-->
+<TitlePage>
+  <Title>&MapleForHomalg;</Title>
+  <Subtitle>An interface between &Maple; and &homalg; using libmaplec</Subtitle>
+  <TitleComment>(<E>this manual is still under construction</E>) <Br/><Br/>
+    This manual is best viewed as an <B>HTML</B> document. The latest version is available <B>online</B> at: <Br/><Br/>
+      <URL>http://homalg.math.rwth-aachen.de/~thomas/MapleForHomalg/chap0.html</URL> <Br/><Br/>
+    An <B>offline</B> version should be included in the documentation subfolder of the package.
+  </TitleComment>
+  <Version>Version <#Include SYSTEM "../VERSION"></Version>
+  <Author>Thomas Bächler<Alt Only="LaTeX"><Br/></Alt>
+    <Address>
+      Lehrstuhl B für Mathematik, <Br/>
+      RWTH Aachen, <Br/>
+      Templergraben 64, <Br/>
+      52062 Aachen, <Br/>
+      Germany
+    </Address>
+    <Email>thomas@momo.math.rwth-aachen.de</Email>
+    <Homepage>http://wwwb.math.rwth-aachen.de/&tilde;thomas/</Homepage>
+  </Author>
+  <Date>June 2009</Date>
+  
+  <Copyright>
+    &copyright; 2009 by Thomas Bächler <P/>
+    
+    This package may be distributed under the terms and conditions of the
+    GNU Public License Version 2.
+  </Copyright>
+  
+<Acknowledgements>
+  
+  
+  
+</Acknowledgements>
+
+</TitlePage>

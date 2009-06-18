@@ -6,6 +6,8 @@
 
 LoadPackage( "MapleForHomalg" );
 
+HOMALG_IO.show_banners := false;
+
 LoadPackage( "GAPDoc" );
 
 list := [
@@ -15,7 +17,6 @@ list := [
 
 TestManualExamples( "doc", "MapleForHomalg.xml", list );
 
-GAPDocManualLab("MapleForHomalg");
+GAPDocManualLab( "MapleForHomalg" );
 
 quit;
-
