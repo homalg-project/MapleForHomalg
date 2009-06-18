@@ -47,7 +47,8 @@ InstallGlobalFunction( LaunchCASMapleForHomalg,
                 errors := "",
                 SendBlockingToCAS := SendBlockingToCASMapleForHomalg,
                 TerminateCAS := TerminateCASMapleForHomalg,
-                pid := pid
+                pid := pid,
+                trim_display := ""
               );
       return s;
     else
