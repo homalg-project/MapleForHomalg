@@ -29,7 +29,6 @@ void __stack_chk_fail_local (void)
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <malloc.h>
 
 static MKernelVector kv = NULL;
 static char *errptr = NULL;
