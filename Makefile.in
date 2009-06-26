@@ -23,9 +23,13 @@ bin/LibraryPath.sh: bin/LibraryPath.sh.in
 	@echo "# [ -f $(SRCDIR)/bin/LibraryPath.sh ] && . $(SRCDIR)/bin/LibraryPath.sh"
 	@echo "#######################################################################"
 
+bin/@GAPARCH@/mapleforhomalg.so: TMPDIR := $(shell mktemp -d /tmp/mapleforhomalg-build.XXXXXX)
 bin/@GAPARCH@/mapleforhomalg.so: src/mapleforhomalg.c
 	cp $(GAPPATH)/bin/@GAPARCH@/config.h bin/@GAPARCH@
-	$(GAPPATH)/bin/@GAPARCH@/gac -p "-g" -p "-I$(MAPLEINCLUDEPATH) -DMAPLE_PATH=\"$(MAPLE)\"" -P "-rpath $(MAPLEBINPATH) -L$(MAPLEBINPATH) -lmaplec" -d -o bin/@GAPARCH@/mapleforhomalg.so src/mapleforhomalg.c
+	ln -s "$(MAPLEINCLUDEPATH)" $(TMPDIR)/include
+	ln -s "$(MAPLEBINPATH)" $(TMPDIR)/lib
+	$(GAPPATH)/bin/@GAPARCH@/gac -p "-g" -p "-I $(TMPDIR)/include" -P " -L $(TMPDIR)/lib -lmaplec" -d -o bin/@GAPARCH@/mapleforhomalg.so src/mapleforhomalg.c
+	rm -r $(TMPDIR)
 
 doc: doc/manual.six
 
