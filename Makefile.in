@@ -9,12 +9,19 @@ GAPINCL=-I$(GAPPATH)/src -I$(GAPPATH)/bin/@GAPARCH@
 
 all: default clean doc
 
-default: bindir bin/@GAPARCH@/mapleforhomalg.so
+default: bindir bin/@GAPARCH@/mapleforhomalg.so bin/LibraryPath.sh
 
 # this target creates a bin-directory
 bindir:
 	if test ! -d bin;  then mkdir bin;  fi
 	if test ! -d bin/@GAPARCH@;  then mkdir bin/@GAPARCH@;  fi
+
+bin/LibraryPath.sh: bin/LibraryPath.sh.in
+	sed "s|@@MAPLE@@|$(MAPLE)|g;s|@@MAPLE_SYSTEM_TYPE@@|$(MAPLE_SYSTEM_TYPE)|g" bin/LibraryPath.sh.in > bin/LibraryPath.sh
+	@echo "#######################################################################"
+	@echo "# Add the following line to your gap start script:"
+	@echo "# [ -f $(SRCDIR)/bin/LibraryPath.sh ] && . $(SRCDIR)/bin/LibraryPath.sh"
+	@echo "#######################################################################"
 
 bin/@GAPARCH@/mapleforhomalg.so: src/mapleforhomalg.c
 	cp $(GAPPATH)/bin/@GAPARCH@/config.h bin/@GAPARCH@

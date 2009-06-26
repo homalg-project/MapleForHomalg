@@ -1,0 +1,13 @@
+##########################################################
+# Library path adjustment for dynamically linking Maple  #
+# This file must be included in your GAP startup script: #
+# . MapleForHomalg/bin/LibraryPath.sh                    #
+##########################################################
+
+export MAPLE="@@MAPLE@@"
+export MAPLE_SYSTEM_TYPE="@@MAPLE_SYSTEM_TYPE@@"
+export LD_LIBRARY_PATH="${MAPLE}/${MAPLE_SYSTEM_TYPE}:${LD_LIBRARY_PATH}"
+if [ "${MAPLE_SYSTEM_TYPE}" = "bin.X86_64_LINUX" ]; then
+  export LD_LIBRARY_PATH="${MAPLE}/${MAPLE_SYSTEM_TYPE}/X8664SSE2:${LD_LIBRARY_PATH}"
+fi
+unset MAPLE_SYSTEM_TYPE

@@ -21,10 +21,12 @@ echo "echo s/@GAPARCH@/\$GAParch/g >sedfile" >> makefile
 chmod +x makefile
 ./makefile
 rm -f makefile
-echo GAPPATH=$GAPPATH >makefile
-echo MAPLE=$MAPLE >> makefile
+echo "GAPPATH=$GAPPATH" >makefile
+echo "SRCDIR=$(readlink -f "$(dirname "$0")")" >> makefile
+echo "MAPLE=$MAPLE" >> makefile
+echo "MAPLE_SYSTEM_TYPE=\$(shell \"\$(MAPLE)/bin/maple.system.type\")" >> makefile
 echo "MAPLEINCLUDEPATH=\$(MAPLE)/extern/include" >> makefile
-echo "MAPLEBINPATH=\$(MAPLE)/\$(shell \$(MAPLE)/bin/maple.system.type)" >> makefile
+echo "MAPLEBINPATH=\$(MAPLE)/\$(MAPLE_SYSTEM_TYPE)" >> makefile
 echo "export LD_LIBRARY_PATH = \$(shell echo \$\$LD_LIBRARY_PATH):\$(MAPLEBINPATH)" >> makefile
 sed -f sedfile Makefile.in >>makefile
 rm -f sedfile

@@ -1,4 +1,5 @@
-bin/
+bin/*/
+bin/*.sh
 makefile
 *~                                                               
 bin

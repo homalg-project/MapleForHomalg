@@ -63,7 +63,6 @@ Obj FuncSTART_MAPLE_KERNEL( Obj self ) {
   };
   char maple_error[2048];
 
-  setenv("MAPLE", MAPLE_PATH, 1);
   maple_error[0] = '\0';
   if(kv != NULL)
     return False;
@@ -109,9 +108,8 @@ Obj FuncEXECUTE_MAPLE_COMMAND( Obj self, Obj cmd ) {
   else {
     g_str = NEW_STRING(0);
   }
-  
 
-if(errptr != NULL) {
+  if(errptr != NULL) {
     g_err = NEW_STRING(strlen(errptr));
     COPY_CHARS(g_err, errptr, strlen(errptr));
     free(errptr);
