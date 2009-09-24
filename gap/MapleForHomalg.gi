@@ -75,3 +75,33 @@ InstallGlobalFunction( TerminateCASMapleForHomalg,
     # The kernel will exit when gap exits
     # STOP_MAPLE_KERNEL();
 end );
+
+#############################################
+#
+# Override Display method for MapleForHomalg
+#
+#############################################
+
+MapleTools.MatrixPrint := "\n\
+  HomalgMatrixPrint := proc(Mat)\n\
+    local M, c, r:\n\
+    M := convert(Mat, listlist):\n\
+    r := \"\":\n\
+    for c in M do\n\
+      r := cat(r, convert(c, string), \"\\n\"):\n\
+    od:\n\
+    return StringTools[Trim](r):\n\
+  end:\n\
+\n";
+
+##
+InstallMethod( Display,
+        "for homalg matrices in Maple",
+        [ IsHomalgExternalMatrixRep ], 1,
+  function( o )
+    if IsHomalgExternalRingInMapleRep( HomalgRing( o ) ) then
+        Print( homalgSendBlocking( [ "HomalgMatrixPrint(", HomalgRing( o ), "[-1][matrix](", o, "))" ], "need_display", HOMALG_IO.Pictograms.Display ) );
+    else
+        TryNextMethod( );
+    fi;
+end );
