@@ -82,7 +82,7 @@ end );
 #
 #############################################
 
-MapleTools.MatrixPrint := "\n\
+MapleMacros.MatrixPrint := "\n\
   HomalgMatrixPrint := proc(Mat)\n\
     local M, c, r:\n\
     M := convert(Mat, listlist):\n\
