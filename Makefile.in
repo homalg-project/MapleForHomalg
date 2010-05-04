@@ -23,13 +23,12 @@ bin/LibraryPath.sh: bin/LibraryPath.sh.in
 	@echo "# [ -f $(SRCDIR)/bin/LibraryPath.sh ] && . $(SRCDIR)/bin/LibraryPath.sh"
 	@echo "#######################################################################"
 
-bin/@GAPARCH@/mapleforhomalg.so: TMPDIR := $(shell mktemp -d /tmp/mapleforhomalg-build.XXXXXX)
-bin/@GAPARCH@/mapleforhomalg.so: src/mapleforhomalg.c
-	cp $(GAPPATH)/bin/@GAPARCH@/config.h bin/@GAPARCH@
-	ln -s "$(MAPLEINCLUDEPATH)" $(TMPDIR)/include
-	ln -s "$(MAPLEBINPATH)" $(TMPDIR)/lib
-	$(GAPPATH)/bin/@GAPARCH@/gac -p "-g" -p "-I $(TMPDIR)/include" -P " -L $(TMPDIR)/lib -lmaplec" -d -o bin/@GAPARCH@/mapleforhomalg.so src/mapleforhomalg.c
-	rm -r $(TMPDIR)
+bin/@GAPARCH@/mapleforhomalg.o: src/mapleforhomalg.c
+	cp $(GAPPATH)/bin/@GAPARCH@/config.h bin/@GAPARCH@/
+	$(CC) -fPIC -Wall -O2 -pipe -I"$(MAPLEINCLUDEPATH)" -o bin/@GAPARCH@/mapleforhomalg.o -I$(GAPPATH)/bin/@GAPARCH@/../.. -I$(GAPPATH)/bin/@GAPARCH@ -DCONFIG_H -c src/mapleforhomalg.c
+
+bin/@GAPARCH@/mapleforhomalg.so: bin/@GAPARCH@/mapleforhomalg.o
+	$(CC) -L "$(MAPLEBINPATH)" -fPIC -shared -lmaplec -o bin/@GAPARCH@/mapleforhomalg.so bin/@GAPARCH@/mapleforhomalg.o
 
 doc: doc/manual.six
 
