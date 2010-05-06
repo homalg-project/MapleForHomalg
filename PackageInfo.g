@@ -42,7 +42,7 @@ Date := "26/09/2009",
 ##  directory containing the package (in our "example" probably:
 ##  example/init.g, ...    or  example-1.3/init.g, ...  )
 # 
-ArchiveURL := "http://wwwb.math.rwth-aachen.de/~barakat/MapleForHomalg",
+ArchiveURL := Concatenation( "http://wwwb.math.rwth-aachen.de/~barakat/MapleForHomalg-", ~.Version ),
 
 ##  All provided formats as list of file extensions, separated by white
 ##  space or commas.
@@ -229,7 +229,7 @@ PackageDoc := rec(
   # a longer title of the book, this together with the book name should
   # fit on a single text line (appears with the '?books' command in GAP)
   # LongTitle := "Elementary Divisors of Integer Matrices",
-  LongTitle := "A &homalg; based Package for MapleForHomalg Index Theory",
+  LongTitle := "An interface between Maple and homalg using libmaplec",
   # Should this help book be autoloaded when GAP starts up? This should
   # usually be 'true', otherwise say 'false'. 
   Autoload  := false

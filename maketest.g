@@ -15,8 +15,13 @@ list := [
          "../gap/MapleForHomalg.gi",
          ];
 
-TestManualExamples( "doc", "MapleForHomalg.xml", list );
+size := SizeScreen( );
+SizeScreen([80]);
+
+TestManualExamples( DirectoriesPackageLibrary( "MapleForHomalg", "doc" )[1]![1], "MapleForHomalg.xml", list );
 
 GAPDocManualLab( "MapleForHomalg" );
+
+SizeScreen( size );
 
 quit;
