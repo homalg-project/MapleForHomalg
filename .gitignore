@@ -1,6 +1,6 @@
 bin/*/
 bin/*.sh
-makefile
+Makefile
 *~                                                               
 bin
 talks
