@@ -35,6 +35,9 @@ case "$GAParch" in
   *linux*)
     sed "s/@GAPARCH@/$GAParch/g;s/@EXTRACOPTS@/$EXTRA_COPTS/g;" Makefile.linux.in >> Makefile
     ;;
+  *apple-darwin*)
+    sed "s/@GAPARCH@/$GAParch/g;s/@EXTRACOPTS@/$EXTRA_COPTS/g;" Makefile.darwin.in >> Makefile
+    ;;
   *)
     echo "Unsupported architecture. If you manage to compile MapleForHomalg on this"
     echo "architecture, please send a patch to thomas@momo.math.rwth-aachen.de."
