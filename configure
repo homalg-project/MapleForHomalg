@@ -31,4 +31,13 @@ echo "MAPLEINCLUDEPATH=\$(MAPLE)/extern/include" >> Makefile
 echo "MAPLEBINPATH=\$(MAPLE)/\$(MAPLE_SYSTEM_TYPE)" >> Makefile
 echo "export LD_LIBRARY_PATH = \$(shell echo \$\$LD_LIBRARY_PATH):\$(MAPLEBINPATH)" >> Makefile
 sed "s/@GAPARCH@/$GAParch/g;s/@EXTRACOPTS@/$EXTRA_COPTS/g;" Makefile.in >> Makefile
-sed "s/@GAPARCH@/$GAParch/g;s/@EXTRACOPTS@/$EXTRA_COPTS/g;" Makefile.linux.in >> Makefile
+case "$GAParch" in
+  *linux*)
+    sed "s/@GAPARCH@/$GAParch/g;s/@EXTRACOPTS@/$EXTRA_COPTS/g;" Makefile.linux.in >> Makefile
+    ;;
+  *)
+    echo "Unsupported architecture. If you manage to compile MapleForHomalg on this"
+    echo "architecture, please send a patch to thomas@momo.math.rwth-aachen.de."
+    rm -f Makefile
+    exit 1
+esac
