@@ -14,6 +14,7 @@ if [ x"$1" = "x" ]; then
 else
     GAPPATH="$1"
 fi
+rm -f makefile Makefile
 . "$GAPPATH"/sysinfo.gap
 case "$GAParch" in
   i?86*)
