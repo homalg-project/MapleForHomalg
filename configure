@@ -29,7 +29,14 @@ echo "MAPLE=$MAPLE" >> Makefile
 echo "MAPLE_SYSTEM_TYPE=\$(shell \"\$(MAPLE)/bin/maple.system.type\")" >> Makefile
 echo "MAPLEINCLUDEPATH=\$(MAPLE)/extern/include" >> Makefile
 echo "MAPLEBINPATH=\$(MAPLE)/\$(MAPLE_SYSTEM_TYPE)" >> Makefile
-echo "export LD_LIBRARY_PATH = \$(shell echo \$\$LD_LIBRARY_PATH):\$(MAPLEBINPATH)" >> Makefile
+case "$GAParch" in
+  *apple-darwin*)
+    echo "export DYLD_LIBRARY_PATH = \$(shell echo \$\$DYLD_LIBRARY_PATH):\$(MAPLEBINPATH)" >> Makefile
+    ;;
+  *)
+    echo "export LD_LIBRARY_PATH = \$(shell echo \$\$LD_LIBRARY_PATH):\$(MAPLEBINPATH)" >> Makefile
+    ;;
+esac
 sed "s/@GAPARCH@/$GAParch/g;s/@EXTRACOPTS@/$EXTRA_COPTS/g;" Makefile.in >> Makefile
 case "$GAParch" in
   *linux*)
