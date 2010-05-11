@@ -245,10 +245,10 @@ Dependencies := rec(
   # list of pairs [package name, (least) version],  package name is case
   # insensitive, least version denoted with '>=' prepended to version string.
   # without these, the package will not load
-  NeededOtherPackages := [["RingsForHomalg", ">=2009.09.26"], ["homalg", ">= 2009.09.26"]],
+  NeededOtherPackages := [ [ "RingsForHomalg", ">=2009.09.26" ] ],
   # without these the package will issue a warning while loading
   # SuggestedOtherPackages := [],
-  SuggestedOtherPackages := [["GAPDoc", ">= 1.0"]],
+  SuggestedOtherPackages := [ [ "GAPDoc", ">= 1.0" ] ],
   # needed external conditions (programs, operating system, ...)  provide 
   # just strings as text or
   # pairs [text, URL] where URL  provides further information
