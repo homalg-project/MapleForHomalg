@@ -23,6 +23,10 @@ bin/LibraryPath.sh: bin/LibraryPath.sh.in
 	@echo "# [ -f $(SRCDIR)/bin/LibraryPath.sh ] && . $(SRCDIR)/bin/LibraryPath.sh"
 	@echo "#######################################################################"
 
+bin/@GAPARCH@/mapleforhomalg.o: src/mapleforhomalg.c
+	cp $(GAPPATH)/bin/@GAPARCH@/config.h bin/@GAPARCH@/
+	$(CC) -fPIC -Wall -O2 -pipe -I"$(MAPLEINCLUDEPATH)" -o bin/@GAPARCH@/mapleforhomalg.o -I$(GAPPATH)/bin/@GAPARCH@/../.. -I$(GAPPATH)/bin/@GAPARCH@ -DCONFIG_H -c src/mapleforhomalg.c
+
 doc: doc/manual.six
 
 doc/manual.six: makedoc.g maketest.g \
