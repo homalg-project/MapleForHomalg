@@ -15,6 +15,14 @@ else
     GAPPATH="$1"
 fi
 . "$GAPPATH"/sysinfo.gap
+case "$GAParch" in
+  i?86*)
+    EXTRA_COPTS=-m32
+    ;;
+  x86_64*)
+    EXTRA_COPTS=-m64
+    ;;
+esac
 echo "GAPPATH=$GAPPATH" > Makefile
 echo "SRCDIR=$(readlink -f "$(dirname "$0")")" >> Makefile
 echo "MAPLE=$MAPLE" >> Makefile
@@ -22,5 +30,5 @@ echo "MAPLE_SYSTEM_TYPE=\$(shell \"\$(MAPLE)/bin/maple.system.type\")" >> Makefi
 echo "MAPLEINCLUDEPATH=\$(MAPLE)/extern/include" >> Makefile
 echo "MAPLEBINPATH=\$(MAPLE)/\$(MAPLE_SYSTEM_TYPE)" >> Makefile
 echo "export LD_LIBRARY_PATH = \$(shell echo \$\$LD_LIBRARY_PATH):\$(MAPLEBINPATH)" >> Makefile
-sed "s/@GAPARCH@/$GAParch/g" Makefile.in >> Makefile
-sed "s/@GAPARCH@/$GAParch/g" Makefile.linux.in >> Makefile
+sed "s/@GAPARCH@/$GAParch/g;s/@EXTRACOPTS@/$EXTRA_COPTS/g;" Makefile.in >> Makefile
+sed "s/@GAPARCH@/$GAParch/g;s/@EXTRACOPTS@/$EXTRA_COPTS/g;" Makefile.linux.in >> Makefile

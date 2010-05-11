@@ -25,7 +25,7 @@ bin/LibraryPath.sh: bin/LibraryPath.sh.in
 
 bin/@GAPARCH@/mapleforhomalg.o: src/mapleforhomalg.c
 	cp $(GAPPATH)/bin/@GAPARCH@/config.h bin/@GAPARCH@/
-	$(CC) -fPIC -Wall -O2 -pipe -I"$(MAPLEINCLUDEPATH)" -o bin/@GAPARCH@/mapleforhomalg.o -I$(GAPPATH)/bin/@GAPARCH@/../.. -I$(GAPPATH)/bin/@GAPARCH@ -DCONFIG_H -c src/mapleforhomalg.c
+	$(CC) @EXTRACOPTS@ -fPIC -Wall -O2 -pipe -I"$(MAPLEINCLUDEPATH)" -o bin/@GAPARCH@/mapleforhomalg.o -I$(GAPPATH)/bin/@GAPARCH@/../.. -I$(GAPPATH)/bin/@GAPARCH@ -DCONFIG_H -c src/mapleforhomalg.c
 
 doc: doc/manual.six
 
