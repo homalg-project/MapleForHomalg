@@ -23,3 +23,4 @@ echo "MAPLEINCLUDEPATH=\$(MAPLE)/extern/include" >> Makefile
 echo "MAPLEBINPATH=\$(MAPLE)/\$(MAPLE_SYSTEM_TYPE)" >> Makefile
 echo "export LD_LIBRARY_PATH = \$(shell echo \$\$LD_LIBRARY_PATH):\$(MAPLEBINPATH)" >> Makefile
 sed "s/@GAPARCH@/$GAParch/g" Makefile.in >> Makefile
+sed "s/@GAPARCH@/$GAParch/g" Makefile.linux.in >> Makefile
