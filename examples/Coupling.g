@@ -1,6 +1,5 @@
 # sys:=Ind2Diff([u[x,x]-u[x,y],u[x,y,y],u[x,y,z]],[x,y,z],[u]);
 
-LoadPackage( "RingsForHomalg" );
 LoadPackage( "MapleForHomalg" );
 
 Qxyz := HomalgFieldOfRationalsInMaple( ) * "x,y,z";
@@ -45,6 +44,8 @@ tau3 := HomalgMatrix( "[ \
 ]", 3, 3, A3 );
 
 tau := tau1 * tau2 * tau3;
+
+LoadPackage( "Modules" );
 
 N := LeftPresentation( M * tau );
 
