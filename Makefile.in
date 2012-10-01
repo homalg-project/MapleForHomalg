@@ -25,12 +25,12 @@ bin/LibraryPath.sh: bin/LibraryPath.sh.in
 
 bin/@GAPARCH@/mapleforhomalg.o: src/mapleforhomalg.c
 	cp $(GAPPATH)/bin/@GAPARCH@/config.h bin/@GAPARCH@/
-	$(CC) @EXTRACOPTS@ -fPIC -Wall -O2 -pipe -I"$(MAPLEINCLUDEPATH)" -o bin/@GAPARCH@/mapleforhomalg.o -I$(GAPPATH)/bin/@GAPARCH@/../.. -I$(GAPPATH)/bin/@GAPARCH@ -DCONFIG_H -c src/mapleforhomalg.c
+	$(CC) @EXTRACOPTS@ -fPIC -Wall -O2 -pipe -I"$(MAPLEINCLUDEPATH)" -o bin/@GAPARCH@/mapleforhomalg.o -I$(GAPPATH)/bin/@GAPARCH@/../.. -I$(GAPPATH)/bin/@GAPARCH@ -I$(GAPPATH)/extern/gmp-5.0.5 -DCONFIG_H -c src/mapleforhomalg.c
 
 doc: doc/manual.six
 
-doc/manual.six: makedoc.g maketest.g \
-		PackageInfo.g VERSION \
+doc/manual.six: makedoc.g maketest.g ListOfDocFiles.g \
+		PackageInfo.g \
 		doc/MapleForHomalg.bib doc/*.xml \
 		gap/*.gd gap/*.gi \
 		examples/*
@@ -44,7 +44,7 @@ test:	doc
 	gapL -x 80 maketest.g
 
 archive: test
-	(mkdir -p ../tar; cd ..; tar czvf tar/MapleForHomalg.tar.gz --exclude ".DS_Store" MapleForHomalg/doc/*.* MapleForHomalg/gap/*.{gi,gd} MapleForHomalg/{CHANGES,PackageInfo.g,README,VERSION,init.g,read.g,Makefile.in,configure,makedoc.g,maketest.g})
+	(mkdir -p ../tar; cd ..; tar czvf tar/MapleForHomalg.tar.gz --exclude ".DS_Store" MapleForHomalg/doc/*.* MapleForHomalg/gap/*.{gi,gd} MapleForHomalg/{CHANGES,PackageInfo.g,README,VERSION,init.g,read.g,Makefile.in,configure,makedoc.g,maketest.g,ListOfDocFiles.g})
 
 WEBPOS=~/gap/pkg/MapleForHomalg/public_html
 WEBPOS_FINAL=~/Sites/homalg
